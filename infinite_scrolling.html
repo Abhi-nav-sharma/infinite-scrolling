@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinte Scrolling</title>
+    <style>
+        #container{
+            margin: 0 auto;
+            width: 400px;
+            border: 10px solid maroon;
+            text-align: center;
+            overflow: scroll;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+<script>
+    var count=1
+    window.addEventListener('load',function(){
+        addElements()
+        var cont= document.getElementById('container')
+        cont.addEventListener('scroll', function(){
+            console.log(cont.scrollTop)
+            console.log(cont.clientHeight)
+            console.log(cont.scrollHeight)
+            if(cont.scrollTop + cont.clientHeight >= cont.scrollHeight-0.21){
+                addElements()
+            }
+        })
+    })
+    function addElements(){
+        var cont = document.getElementById('container')
+        var i=0; 
+        while(i<25){
+            var content= document.createElement('p')
+            content.textContent=`Masai School ${count}`
+            cont.append(content)
+            count++
+            i++
+        }
+    }
+</script>
+</html>
